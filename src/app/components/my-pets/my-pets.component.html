@@ -1,0 +1,13 @@
+<main id="main">
+    <h2>My Pets</h2>
+    <!-- if the user has pets, display the component for each pet -->
+    <ng-container *ngIf="loggedInUser.pets&&loggedInUser.pets.length>0; else message">
+        <app-pet 
+        *ngFor="let eachPet of loggedInUser.pets"
+        [pet]="eachPet"></app-pet>
+    </ng-container>
+    <!-- otherwise, show the message-->
+    <ng-template #message>
+        <span id="message">{{ message }}</span>
+    </ng-template>
+</main>

@@ -1,0 +1,15 @@
+<main id="main">
+    <h2>Available Pets</h2>
+    <!-- if there are pets, display the component for each pet -->
+    <ng-container *ngIf="pets.length>0;else message">
+        <input [(ngModel)]="searchText" type="text">
+        <!-- searchText referenced in the pipe below -->
+        <app-pet 
+            *ngFor="let eachPet of pets | petSearch:searchText"
+            [pet]="eachPet"></app-pet> <!-- "pet" is a property in the pet component using @Input -->
+    </ng-container>
+    <!-- otherwise, show the message-->
+    <ng-template #message>
+        <span id="message">{{ message }}</span>
+    </ng-template>
+</main>

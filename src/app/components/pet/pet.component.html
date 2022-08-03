@@ -1,0 +1,7 @@
+<div class="petDiv">
+    {{ today | date:'shortDate' }} <!-- built-in pipe -->
+    <h3>{{ pet.name | uppercase }}</h3> <!-- built-in pipe -->
+    <p>Age {{ pet.age }} {{ pet.species.name }}</p>
+    <p>{{ pet.description }}</p>
+    <button *ngIf="pet.status.name==='Available'" (click)="adoptPet()" [id]="'adopt_'+pet.id">Adopt</button>
+</div>
