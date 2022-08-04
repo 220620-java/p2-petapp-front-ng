@@ -1,5 +1,9 @@
 body {
     font-size:1.8vw;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: var(--color-5);
+    background-color: white;
+    background-image: url('./assets/paw-bg-green.png');
 }
 
 nav {
@@ -26,12 +30,13 @@ main {
 
 .images>img {
     max-width:100%;
-    
+    border:6px solid var(--color-5);
 }
 
 table, th, td {
     border-collapse: collapse;
     border:2px solid;
+    border-color:var(--color-3);
 }
 
 th,td {
@@ -71,17 +76,6 @@ button:hover, a:hover {
     --light:#85b395;
 }
 
-body {
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    color: var(--color-5);
-    background-color: white;
-    background-image: url('./assets/paw-bg-green.png');
-}
-
-.images>img {
-    border:6px solid var(--color-5);
-}
-
 a {
     color: var(--color-5);
     text-decoration: none;
@@ -115,10 +109,6 @@ h1, h2 {
 
 table {
     margin:auto;
-}
-
-table, th, td {
-    border-color:var(--color-3);
 }
 
 button {

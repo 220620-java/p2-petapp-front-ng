@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { UrlService } from 'src/app/services/url.service';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -8,16 +8,20 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
-  loggedInUser: any;
+  @Input() loggedInUser: any;
+  @Output() loggedOut: EventEmitter<any> = new EventEmitter();
 
-  constructor(private userServ: UserService) { }
+  constructor(private userServ: UserService, private router: Router) { }
 
   ngOnInit(): void {
-    this.setupUser();
+    // not in use
   }
 
-  async setupUser() {
-    this.loggedInUser = await this.userServ.getLoggedInUser();
+  logOut() {
+    this.loggedInUser=null;
+    this.userServ.logOut();
+    this.loggedOut.emit();
+    this.router.navigate(['home']);
   }
 
 }

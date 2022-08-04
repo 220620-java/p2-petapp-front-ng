@@ -45,6 +45,7 @@ export class UserService {
   logOut(): void {
     this.loggedInUser = null;
     sessionStorage.removeItem('petapp-id');
+    sessionStorage.removeItem('petapp-tkn');
   }
 
   async fetchUser() {

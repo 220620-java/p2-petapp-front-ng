@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { PetService } from 'src/app/services/pet.service';
 import { UrlService } from 'src/app/services/url.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-pet',
@@ -13,42 +15,23 @@ export class PetComponent implements OnInit {
   // in order to accept input from the parent component by using @Input decorator
   @Input() pet:any;
 
-  constructor(private urlServ: UrlService) { }
+  constructor(private userServ: UserService, private petServ: PetService) { }
 
   ngOnInit(): void {
     this.getLoggedInUser();
   }
 
   async getLoggedInUser() {
-    let userId = sessionStorage.getItem('petapp-id');
-    if (userId) {
-      let resp = await fetch(this.urlServ.apiUrl + '/users/' + userId, {
-        headers: new Headers({
-          'Auth': sessionStorage.getItem('petapp-tkn')!
-        })
-      });
-
-      if (resp.ok) {
-        this.loggedInUser = await resp.json();
-      }
-    }
+    this.loggedInUser = await this.userServ.getLoggedInUser();
   }
 
-  async adoptPet() {
+  adoptPet() {
     if (this.pet) {
-      let resp = await fetch(this.urlServ.apiUrl+'/pets/'+this.pet.id+'/adopt/'+this.loggedInUser.id, {
-          method:'PUT',
-          body:JSON.stringify(this.pet),
-          headers:new Headers({
-              'Content-Type':'application/json'!,
-              'Auth':sessionStorage.getItem('petapp-tkn')!
-          })
-      });
-
-      if (resp.ok) {
-          this.loggedInUser = await resp.json();
-          this.pet.status.name = 'Adopted';
-      }
+      this.petServ.adoptPet(this.pet, this.loggedInUser.id)?.subscribe(
+        resp => {
+          this.loggedInUser = resp;
+        }
+      );
     }
 
   }

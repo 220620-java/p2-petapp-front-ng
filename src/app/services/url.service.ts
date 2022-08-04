@@ -8,6 +8,8 @@ export class UrlService {
   //apiUrl: string = 'http://localhost:8080';
   apiUrl: string = 'http://petapp-2.us-east-1.elasticbeanstalk.com';
 
-  constructor() { }
+  constructor() {
+    // not in use
+  }
 
 }

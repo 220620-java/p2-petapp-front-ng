@@ -6,13 +6,13 @@
             <legend></legend>
             <label for="usernameInput">Username: </label>
             <!-- two-way binding on the usernameInput field in the typescript -->
-            <input [(ngModel)]="usernameInput" id="usernameInput" type="text"><br>
+            <input [(ngModel)]="usernameInput" name="usernameInput" id="usernameInput" type="text"><br>
         </fieldset>
         <fieldset>
             <legend></legend>
             <label for="passwordInput">Password: </label>
             <!-- two-way binding on the usernameInput field in the typescript -->
-            <input [(ngModel)]="passwordInput" id="passwordInput" type="password"><br>
+            <input [(ngModel)]="passwordInput" name="passwordInput" id="passwordInput" type="password"><br>
         </fieldset>
         <!-- event binding that calls the logIn() method in the typescript -->
         <button (click)="logIn()" id="loginBtn" type="button">Log In</button>

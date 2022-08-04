@@ -1,18 +1,18 @@
 <nav id="nav">
     <span id="leftNav">
-        <a>PetApp</a>
-        <span>&#x1F43E;</span>
-        <a>Available Pets</a>
+        <a routerLink="home">PetApp</a>
+        <span>🐾</span>
+        <a routerLink="available">Available Pets</a>
         <!-- structural directive: *ngIf: if true, the element will exist in the DOM-->
-        <a *ngIf="loggedInUser" id="myPetsLink">My Pets</a>
+        <a routerLink="mypets" *ngIf="loggedInUser" id="myPetsLink">My Pets</a>
     </span>
     <span id="rightNav">
         <span *ngIf="loggedInUser; else loginLink">
             <a>{{ loggedInUser.username }}</a>
-            <a href="#" id="logoutBtn">Log Out</a>
+            <a (click)="logOut()" id="logoutBtn">Log Out</a>
         </span>
         <ng-template #loginLink>
-            <a id="loginLink">Log In</a>
+            <a routerLink="login" id="loginLink">Log In</a>
         </ng-template>
     </span>
 </nav>

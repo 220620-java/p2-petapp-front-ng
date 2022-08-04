@@ -1,2 +1,6 @@
-<app-nav></app-nav>
-<app-available-pets></app-available-pets>
+<!-- loggedOut is a custom event created by an EventEmitter in the nav component 
+  with @Output decorator -->
+<app-nav [loggedInUser]="loggedInUser" (loggedOut)="updateLogin()"></app-nav>
+<!-- router-outlet is a placeholder for the components that will be
+ swapped in/out with routing -->
+<router-outlet (activate)="updateLogin()"></router-outlet>

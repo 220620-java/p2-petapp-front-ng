@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PetService } from 'src/app/services/pet.service';
 import { UrlService } from 'src/app/services/url.service';
 
 @Component({
@@ -11,19 +12,26 @@ export class AvailablePetsComponent implements OnInit {
   pets: any[] = [];
   searchText:string = '';
 
-  constructor(private urlServ: UrlService) { }
+  constructor(private petServ: PetService) { }
 
   ngOnInit(): void {
     this.getPets();
   }
 
-  async getPets() {
-    let resp = await fetch(this.urlServ.apiUrl+'/pets');
+  getPets() {
+    // with Fetch: let resp = await fetch(url)
+    // with Fetch: if (resp.ok) this.pets = await resp.json();
+    
+    // alternatively with Fetch in the service: this.pets = await this.petServ.getPets();
 
-    if (resp.ok) {
-        this.pets = await resp.json();
-    }
-
+    this.petServ.getAvailablePets().subscribe(
+      resp => {
+        this.pets = resp;
+      }
+      // error => { Passing in multiple callbacks like this 
+      // console.log(error); is deprecated in rxJS
+      // } you should use an observer argument
+    );
   }
 
 }
