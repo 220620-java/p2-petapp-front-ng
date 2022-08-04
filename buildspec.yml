@@ -3,7 +3,8 @@ version: 0.2
 phases:
   install:
     commands:
-      - sudo yum install nodejs14
+      - curl -fsSL https://dev.nodesource.com/setup_16.x | sudo -E bash -
+      - sudo apt-get install -y nodejs
   pre_build:
     commands:
       - npm i -g @angular/cli
