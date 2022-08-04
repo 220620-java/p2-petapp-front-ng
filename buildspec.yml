@@ -1,0 +1,16 @@
+version: 0.2
+
+phases:
+  pre-build:
+    commands:
+      - npm i -g @angular/cli
+      - npm install --force
+  build:
+    commands:
+      - ng build
+
+artifacts:
+  files:
+    - "**/*"
+  discard-paths: no
+  base-directory: dist/pet-app-ng
