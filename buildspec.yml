@@ -3,7 +3,7 @@ version: 0.2
 phases:
   install:
     commands:
-      - yum install nodejs16
+      - yum install nodejs14
   pre_build:
     commands:
       - npm i -g @angular/cli
